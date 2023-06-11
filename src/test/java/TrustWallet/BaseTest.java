@@ -1,5 +1,6 @@
 package TrustWallet;
 
+import TrustWallet.UtilTool.WalletObjects;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,15 +8,21 @@ import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
 
 public class BaseTest {
 
     public AndroidDriver<AndroidElement> driver;
+    public WalletObjects walletObjects;
+    public WebDriverWait wait;
+    //public
 
-    @BeforeSuite
+    @BeforeClass
     public void init() {
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName","Android");
@@ -33,13 +40,15 @@ public class BaseTest {
         try {
             driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities); //connect to Android server by default URL
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //slower execution speed to give proper buffer time for page loading
+            walletObjects = new WalletObjects(driver);
+            wait = new WebDriverWait(driver, 10); //If the new screen cannot be loaded within 10 seconds, the test will fail.
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println("App is launched!");
+        System.out.println("Trust Wallet is launched! Test Start!");
     }
 
-    @AfterSuite
+    @AfterClass
     public void end() throws InterruptedException{
         driver.quit();
     }

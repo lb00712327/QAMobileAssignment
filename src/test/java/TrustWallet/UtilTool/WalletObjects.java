@@ -3,9 +3,9 @@ package TrustWallet.UtilTool;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+// Objects are used often are listed here, so the code can be clean and easier maintained.
 public class WalletObjects {
     WebDriver driver;
-
     By newAccountButton = By.id("com.wallet.crypto.trustapp:id/new_account_action");
     By acceptCheckBox = By.id("com.wallet.crypto.trustapp:id/acceptCheckBox");
     By nextButton = By.id("com.wallet.crypto.trustapp:id/next");

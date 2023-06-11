@@ -1,0 +1,114 @@
+Test Plan: Wallet Creation Flow of TrustWallet
+Test Objective: Verify user can complete the wallet creation flow in the TrustWallet Android app
+
+Test Device: Android Phone - Google Pixel 6
+Operating System Version: Android 13 (The most common version on the market currently)
+Software Version: Trust Wallet 7.23
+
+In this automated test, different scenarios will be categorized into distinct classes. The corresponding test cases within each test scenario will be executed through separate test methods.
+In the BaseTest.class, an initial method is implemented to establish communication with the Android test device via the Appium Server and subsequently initiate the launch of the TrustWallet application at the beginning of a test run for a given test scenario.
+Furthermore, upon completion of the test execution for a particular scenario, the TrustWallet app will be terminated.
+To eliminate duplication, frequently utilized objects are extracted and stored within the WalletObjects class, located in the UtilTool package.
+
+Detailed test scenarios and cases are listed in below:
+
+Test Scenarios:
+Scenarios: Positive Flow -  User create a new wallet successfully.
+Test Case 1.1 - Verify User can navigate to Legal screen from Welcome screen successfully
+Test Steps:
+1. Launch the TrustWallet app. //done by init function in BaseTest.Java
+2. Verify that the Welcome screen is displayed.
+3. Click on "CREATE A NEW WALLET" button
+4. Verify that the Legal screen is displayed.
+
+Test Case 1.2 - Verify User can navigate to Set Passcode screen from Legal screen successfully.
+Test Steps:
+1. Verify "Privacy Policy" and "Terms of Service" buttons are displayed
+2. Verify that user can agree "I've read and accept the Terms of Service and Privacy Policy" condition
+3. Click on "Continue" button
+4. Verify that the Set Passcode screen is displayed.
+
+Test Case 1.3 - Verify User can navigate to Confirm Passcode screen from Set Passcode screen successfully.
+Test Steps:
+1. Enter 6 digits passcode with test data "313214"
+2. Verify that the Confirm Passcode screen is displayed.
+
+Test Case 1.4 - Verify User can navigate to Secret Phrase Backup screen from Confirm Passcode screen successfully.
+Test Steps:
+1. Enter 6 digits passcode with test data "313214"
+2. Verify that a pop up window of Biometric Login Setting pops up
+3. Select "Deny"
+4. Verify that the Secret Phrase Backup screen is displayed.
+
+Test Case 1.5 - Verify User can navigate to Consent screen from Secret Phrase Backup screen successfully.
+Test Steps:
+1. Select "Back up manually"
+2. Verify Consent screen is displayed
+
+Test Case 1.6 - Verify User can navigate to Recovery Phrase screen from Consent screen successfully.
+Test Steps:
+1. Agree first term displayed on the page
+2. Agree second term displayed on the page
+3. Agree third term displayed on the page
+4. Click on "Continue" button
+5. Verify Recovery Phrase screen is displayed
+
+Test Case 1.7 - Verify User can navigate to Confirm Recovery Phrase screen from Recovery Phrase screen successfully.
+Test Steps:
+1. Click "Copy" button
+2. Verify the recovery phase are saved in clipboard
+3. Click on "Continue" button
+4. Verify Confirm Recovery Phrase screen is displayed
+
+Test Case 1.8 - Verify User can complete the wallet creation flow.
+Test Steps:
+1. Click on the recovery words in the correct order
+2. Click on "Done" button
+3. Verify Wallet is now created
+
+
+Scenarios: Negative Test Cases - The user is unable to proceed with the wallet creation process if the required action is not performed on each screen.
+Test Case 2.1 - Verify User cannot navigate to Set Passcode screen from Legal screen without agree the condition
+Test Steps:
+1. Verify "Privacy Policy" and "Terms of Service" buttons are displayed
+2. Verify the "Continue" button is not clickable
+3. Try to click on "Continue" button
+4. User still stays on Legal Screen
+
+Test Case 2.2 - Verify User cannot navigate to Secret Phrase Backup screen from Set Passcode screen if passcode is different.
+Test Steps:
+1. Enter 6 digits passcode with test data "482919"
+2. Verify that the Secret Phrase Backup screen is not displayed.
+3. Verify a warning message shows "Those passwords didn't match" on the screen
+4. Verify that the Set Passcode screen is displayed again
+
+Test Case 2.3 - Verify User cannot navigate to Recovery Phrase screen from Consent screen if any term is not agreed.
+Test Steps:
+1. Try to click on "Continue" button directly
+2. User still stays on Consent Screen
+3. Agree first term displayed on the page
+4. Try to click on "Continue" button again
+5. User still stays on Consent Screen
+6. Agree second term displayed on the page
+7. Try to click on "Continue" button again
+8. User still stays on Consent Screen
+9. Agree third term displayed on the page, but disagree the first term
+10. Try to click on "Continue" button again
+11. User still stays on Consent Screen
+
+Test Case 2.4 - Verify User cannot complete the wallet creation flow if click on the recovery word in the wrong order.
+Test Steps:
+1. Click on the recovery words in the wrong order
+2. An warning message "Invalid order. Try again" is displayed
+3. Click on "Done" button
+4. user still stays on Verify Secret Phrase
+
+Scenarios: Verification of elements on each screen.
+These scenarios have the potential to be expanded into a vast number of test cases. The test cases encompass a thorough examination of all elements on each screen, including images, texts, URLs, and their adherence to expected display standards.
+For instance, in the welcome screen, a test case can be devised to ensure that images and texts load appropriately, in alignment with the provided design specifications.
+Additionally, the test case can verify that all texts are correctly formatted and sized as required.
+Should you wish to explore any intriguing test cases within this scenario during my next interview, I will gladly elaborate on my implementation strategies.
+
+Thank you very much for reviewing my assignment and looking forward to work with your team.
+
+Tony Ku - QA Engineer
