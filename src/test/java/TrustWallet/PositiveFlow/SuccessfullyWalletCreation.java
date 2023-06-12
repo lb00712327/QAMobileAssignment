@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
-//Scenarios: Positive Flow -  User create a new wallet successfully.
+//Scenarios: Positive Test Cases -  User create a new wallet successfully.
 public class SuccessfullyWalletCreation extends BaseTest {
 
     String[] recoveryWords;
@@ -20,7 +20,7 @@ public class SuccessfullyWalletCreation extends BaseTest {
 
         System.out.println("Test Case 1.1 - Verify User can navigate to Legal screen from Welcome screen");
         //1. Launch the TrustWallet app. Done by init function in BaseTest.Java
-        //2. Verify that the Welcome screen is displayed. Assuming below 2 buttons are always and only displayed on Welcome page
+        //2. Verify that the Welcome screen is displayed. Assuming below 2 buttons are always and only displayed on Welcome screen
         Assert.assertTrue("CREATE A NEW WALLET button is not shown", driver.findElementById("com.wallet.crypto.trustapp:id/new_account_action").isDisplayed());
         Assert.assertTrue("I already have a wallet button is not shown", driver.findElementById("com.wallet.crypto.trustapp:id/import_account_action").isDisplayed());
         //3. Click on "CREATE A NEW WALLET" button
@@ -118,11 +118,11 @@ public class SuccessfullyWalletCreation extends BaseTest {
     public void ConsentScreenToRecoveryPhraseScreen() {
 
         System.out.println("Test Case 1.6 - Verify User can navigate to Recovery Phrase screen from Consent screen successfully.");
-        //1. Agree first term displayed on the page
+        //1. Agree first term displayed on the screen
         walletObjects.clickCheckBoxOfConsentItems(1);
-        //2. Agree second term displayed on the page
+        //2. Agree second term displayed on the screen
         walletObjects.clickCheckBoxOfConsentItems(2);
-        //3. Agree third term displayed on the page
+        //3. Agree third term displayed on the screen
         walletObjects.clickCheckBoxOfConsentItems(3);
         //4. Click on "Continue" button
         walletObjects.clickNextButton();
@@ -147,9 +147,9 @@ public class SuccessfullyWalletCreation extends BaseTest {
         String[] clipboardText = driver.getClipboardText().split("\\s+");  //Get words from clipboard
         boolean isSame = Arrays.equals(recoveryWords, clipboardText);
             if (isSame) {
-                System.out.println("Clipboard text is exactly the same as the recovery words displayed on the page.");
+                System.out.println("Clipboard text is exactly the same as the recovery words displayed on the screen.");
             } else {
-                System.out.println("Clipboard text is not the same as the recovery words displayed on the page.\"");
+                System.out.println("Clipboard text is not the same as the recovery words displayed on the screen.");
             }
         //3. Click on "Continue" button
         walletObjects.clickActionVerify();

@@ -21,7 +21,7 @@ public class BaseTest {
     //public
 
     @BeforeClass
-    public void init() {
+    public void Init() {
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -39,7 +39,7 @@ public class BaseTest {
 
         try {
             driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities); //connect to Android server by default URL
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //slower execution speed to give proper buffer time for page loading
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //slower execution speed to give proper buffer time for screen loading
             walletObjects = new WalletObjects(driver);
             wait = new WebDriverWait(driver, 10); //If the new screen cannot be loaded within 10 seconds, the test will fail.
         } catch (MalformedURLException e) {
@@ -49,7 +49,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public void end() throws InterruptedException{
+    public void End() throws InterruptedException{
         driver.quit();
     }
 }
